@@ -1,6 +1,11 @@
-// import User from './model/up.js';
+const User= require ('./model/index.js');
 const express =require('express') ;
 const mongoose =require('mongoose') ;
+const router1 =require("./routes/loginrouter.js")
+const signupRouter =require("./routes/signuprouter.js")
+const router2 =require("./routes/triprouter.js")
+
+
 
 const app = express();
 app.use(express.json());
@@ -13,13 +18,21 @@ mongoose.connect('mongodb://localhost:27017/travel-agency')
     console.error("Failed to connect to MongoDB:", err);
   });
 
-// app.use('/api/users', userRoutes);
 
+  app.use('/api', signupRouter)
+  app.use('/api', router1)
+  app.use('/api', router2)
+  
+
+
+ 
 
 
 
 
 const PORT =  5500;
-app.listen(PORT, () => {
+app.listen(PORT, (err) => {
+  if(err)console.log(err);
+  
   console.log(`Server is running on port ${PORT}`);
 })
