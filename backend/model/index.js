@@ -1,11 +1,12 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+const mongoose= require('mongoose') ;
+const bcrypt =require ('bcrypt');
 
 
 
 const passwordValidator = (password) => {
   return /^[A-Z]/.test(password);
 };
+
 
 const UserSchema = new mongoose.Schema({
   username: { 
@@ -49,4 +50,6 @@ UserSchema.methods.comparePassword = async function(candidatePassword) {
 
 const User = mongoose.model('User', UserSchema);
 
-export default User;
+
+module.exports =User
+
