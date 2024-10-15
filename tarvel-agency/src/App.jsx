@@ -6,9 +6,18 @@ function App() {
   <Router>
   <nav>
 <ul>
+
+  
 <li>
   <Link to ="/"> Login </Link>
 </li>
+
+
+<li>
+  <Link to ="/"> Sign Up </Link>
+</li>
+
+
 </ul>
   </nav>
   </Router>
