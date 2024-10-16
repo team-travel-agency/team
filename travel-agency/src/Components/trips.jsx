@@ -4,12 +4,15 @@ import axios from 'axios';
 
 const Trips = () => {
   const [trips, setTrips] = useState([]);
+console.log(trips);
 
   useEffect(() => {
     const fetchTrips = async () => {
-      try {
-        const response = await axios.get('http://localhost:5500/getTrips');
-        setTrips(response.data);
+      try {        
+        const re = await axios.get('http://localhost:5000/api/getTrips');
+        console.log('me',re);
+        
+        setTrips(re.data);
       } catch (error) {
         console.error('Error fetching trips:', error);
       }
@@ -26,6 +29,7 @@ const Trips = () => {
           <li key={trip._id}>
             <h2>{trip.destination}</h2>
             <p>{trip.description}</p>
+            <img src={trip.img}></img>
             <p>Price: ${trip.price}</p>
             <p>Duration: {trip.duration} days</p>
             <p>Date: {trip.trip_date}</p>

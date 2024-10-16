@@ -2,7 +2,6 @@ const User = require('../model/index.js');
 const Signup = async (req, res) => {
     try {
       const { username, email, password } = req.body;
-      console.log(req.body,"😉😉");
       const newUser = new User({ username, email, password });
       
       await newUser.save();

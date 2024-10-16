@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+// import Link from 'react-router-dom'
 const Signup = () => {
   console.log();
   
@@ -55,7 +55,7 @@ const Signup = () => {
         />
        
         <button type="submit" onClick={()=>handleSignUp()}>Sign Up</button>
-      
+        {/* <Link to="/firstPage">Login</Link> */}
     </div>
   );
 };

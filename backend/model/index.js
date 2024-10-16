@@ -11,37 +11,39 @@ const passwordValidator = (password) => {
 const UserSchema = new mongoose.Schema({
   username: { 
     type: String,  
-    maxlength: [30, 'Username cannot exceed 50 characters'] 
+    maxlength: [30, 'Username cannot exceed 30 characters'] 
   },
   email: { 
     type: String, 
     required: [true, 'Email is required'], 
     unique: true, 
-    maxlength: [50, 'Email cannot exceed 100 characters'],
+    maxlength: [50, 'Email cannot exceed 50 characters'],
     match: [/.+\@.+\..+/, 'Please enter a valid email address'],
     
   },
   password: { 
     type: String, 
     required: [true, 'Password is required'], 
-    maxlength: [50, 'Password cannot exceed 100 characters'],
-    unique: true,
+    maxlength: [50, 'Password cannot exceed 50 characters'],
+    unique: true, 
     validate: {
       validator: passwordValidator,
       message: 'Password must start with an uppercase letter'
     }
   }
 });
+UserSchema.pre('save',async function (next) {
+  
+  try{
+    const pass=await bcrypt.genSalt(10)
+    const hashedpass=await bcrypt.hash(this.password,pass)
+    this.password=hashedpass
+    next()
 
-UserSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) return next();
+  }
+  catch (error){
+    next(error)
 
-  try {
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
-  } catch (err) {
-    next(err);
   }
 });
 

@@ -1,7 +1,7 @@
 const User= require ('./model/index.js');
 const express =require('express') ;
 const mongoose =require('mongoose') ;
-const router1 =require("./routes/loginrouter.js")
+const loginRouter =require("./routes/loginrouter.js")
 const signupRouter =require("./routes/signuprouter.js")
 const router2 =require("./routes/triprouter.js")
 const cors = require ("cors")
@@ -23,9 +23,9 @@ mongoose.connect('mongodb://localhost:27017/travel-agency')
   });
 
 
-  app.use('/api/sigup', signupRouter)
-  app.use('/api/login', router1)
-  app.use('/api/trips', router2)
+  app.use('/api', signupRouter)
+  app.use('/api', loginRouter)
+  app.use('/api', router2)
   
 
 
