@@ -27,6 +27,9 @@ mongoose.connect('mongodb://localhost:27017/travel-agency')
 
   app.use('/api', signupRouter)
   app.use('/api', loginRouter)
+
+  app.use('/api', router2)
+
   app.use('/api', tripRouter)
   app.use('/api',getTripByIdRouter)
   
