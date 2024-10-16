@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Trips = () => {
-  const [trips, setTrips] = useState([]);
+  const [trips, setTrips] = useState([]); 
+  
 
   useEffect(() => {
     const fetchTrips = async () => {
@@ -29,7 +30,7 @@ const Trips = () => {
             <p>Price: ${trip.price}</p>
             <p>Duration: {trip.duration} days</p>
             <p>Date: {trip.trip_date}</p>
-            <p>Country: {trip.country}</p>
+            <p>Country: {trip.country}</p> 
           </li>
         ))}
       </ul>
