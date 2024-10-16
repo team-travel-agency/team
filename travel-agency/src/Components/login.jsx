@@ -7,7 +7,6 @@ const Login=()=>{
 const handleLogin =(e)=>{
 e.preventDefault()
 }
-
 return (
     <div>
     <h2>Login</h2>
@@ -18,7 +17,6 @@ return (
     value={userName}
     onChange={(e)=>{setUserName(e.target.value)}}
     />
-
 <input 
     type="text"
     placeholder="enter your email"
@@ -36,7 +34,5 @@ return (
     </form>
     </div>
 )
-
 }
-
 export default Login 

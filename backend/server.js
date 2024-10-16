@@ -19,9 +19,9 @@ mongoose.connect('mongodb://localhost:27017/travel-agency')
   });
 
 
-  app.use('/api', signupRouter)
-  app.use('/api', router1)
-  app.use('/api', router2)
+  app.use('/api/sigup', signupRouter)
+  app.use('/api/login', router1)
+  app.use('/api/trips', router2)
   
 
 
@@ -30,7 +30,7 @@ mongoose.connect('mongodb://localhost:27017/travel-agency')
 
 
 
-const PORT =  5500;
+const PORT =  5173;
 app.listen(PORT, (err) => {
   if(err)console.log(err);
   
