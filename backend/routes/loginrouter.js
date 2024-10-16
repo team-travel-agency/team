@@ -1,7 +1,7 @@
 const express=require("express")
 
 const {login}=require("../controllers/login.js")
-const router1=express.Router()
+const loginRouter=express.Router()
 
-router1.post('/login',login)
-module.exports=router1
+loginRouter.post('/login',login)
+module.exports=loginRouter
