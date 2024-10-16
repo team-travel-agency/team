@@ -35,8 +35,8 @@ const UserSchema = new mongoose.Schema({
 UserSchema.pre('save',async function (next) {
   
   try{
-    const passs=await bcrypt.genSalt(10)
-    const hashedpass=await bcrypt.hash(this.password,passs)
+    const pass=await bcrypt.genSalt(10)
+    const hashedpass=await bcrypt.hash(this.password,pass)
     this.password=hashedpass
     next()
 
