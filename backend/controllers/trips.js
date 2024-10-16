@@ -1,4 +1,4 @@
-const Trip =require ('../model/index.js');
+const Trip =require ('../model/trips.js');
 
  const getTrips = async (req, res) => {
     try {
