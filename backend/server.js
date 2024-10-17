@@ -10,6 +10,7 @@ const getTripByIdRouter=require("./routes/onetriprouter.js")
 
 
 
+
 const app = express();
 app.use(express.json());
 app.use(cors())
@@ -29,6 +30,7 @@ mongoose.connect('mongodb://localhost:27017/travel-agency')
   app.use('/api', loginRouter)
   app.use('/api', tripRouter)
   app.use('/api',getTripByIdRouter)
+
   
 
 
