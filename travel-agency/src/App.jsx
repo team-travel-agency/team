@@ -1,29 +1,48 @@
-import { Route,Routes,BrowserRouter } from 'react-router-dom';
-import './App.css'
-import Login from "./Components/login"
-import Signup from "./Components/signUp"
-
-
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import './App.css';
+import Trips from './Components/trips.jsx';
+import OneTrip from './Components/onetrip.jsx';
+import Pannier from './Components/pannier.jsx';
+import NavBar from './NavBar.jsx'; //
+import { useState } from 'react';
 
 function App() {
- return (
-  <div>
-  <BrowserRouter>
-    <Routes>
-      <Route path='/login' element={<Login/>}/>
-    </Routes>
-  </BrowserRouter>
+  const [reservedTrips, setReservedTrips] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  <BrowserRouter>
-    <Routes>
-      <Route path='/signup' element={<Signup/>}/>
-    </Routes>
-  </BrowserRouter>
+  const addToPannier = (trip) => {
+    setReservedTrips([...reservedTrips, trip]);
+  };
 
-  </div>
- )
+  const removeFromPannier = (id) => {
+    setReservedTrips((prevTrips) => prevTrips.filter((trip) => trip._id !== id));
+  };
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
+  return (
+    <div>
+      <BrowserRouter>
+        {/* Include the NavBar component here */}
+        <NavBar />
+
+        <Routes>
+          <Route
+            path=''
+            element={
+              <>
+                <Trips searchTerm={searchTerm} />
+              </>
+            }
+          />
+          <Route path='/trip/:id' element={<OneTrip addToPannier={addToPannier} />} />
+          <Route path='/Pannier' element={<Pannier reservedTrips={reservedTrips} removeFromPannier={removeFromPannier} />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
-export default App
+export default App;
