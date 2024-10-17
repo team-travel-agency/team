@@ -15,9 +15,9 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 app.use(express.urlencoded({ extended: true }));
-
+  
 app.use(express.static('public'))
-mongoose.connect('mongodb://localhost:27017/travel-agency')
+mongoose.connect('mongodb://localhost:27017/trips')
   .then(() => {
     console.log("Connected to MongoDB successfully!");
   })
@@ -29,7 +29,7 @@ mongoose.connect('mongodb://localhost:27017/travel-agency')
   app.use('/api', signupRouter)
   app.use('/api', loginRouter)
 
-  app.use('/api', router2)
+  
 
   app.use('/api', tripRouter)
   app.use('/api',getTripByIdRouter)

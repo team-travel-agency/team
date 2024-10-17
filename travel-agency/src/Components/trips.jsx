@@ -1,16 +1,9 @@
-// src/components/Trips.js
-
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-
 const Trips = () => {
   const [trips, setTrips] = useState([]);
-
 
   useEffect(() => {
     const fetchTrips = async () => {
@@ -19,15 +12,16 @@ const Trips = () => {
   useEffect(() => {
     const fetchTrips = async () => {
       try {
-        const response = await axios.get('http://localhost:5500/getTrips');
+        const response = await axios.get("http://localhost:5000/api/getTrips");
         setTrips(response.data);
       } catch (error) {
-        console.error('Error fetching trips:', error);
+        console.log("Error fetching trips:", error);
       }
     };
 
     fetchTrips();
   }, []);
+
 
   useEffect(
     () => async () => {
@@ -41,6 +35,7 @@ const Trips = () => {
 
     fetchTrips();
   }, []);
+
 
 
   return (
@@ -63,6 +58,9 @@ const Trips = () => {
               </p>
               <p className="text-sm text-gray-700">Date: {trip.trip_date}</p>
 
+            </div>
+
+
 
           <li key={trip._id}>
             <h2>{trip.destination}</h2>
@@ -81,8 +79,8 @@ const Trips = () => {
               <p>Date: {trip.trip_date}</p>
 
            </div>
-          </Link>
 
+          </Link>
         ))}
       </div>
     </div>

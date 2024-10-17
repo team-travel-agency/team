@@ -1,4 +1,4 @@
-const Trip =require ('../model/trips.js');
+const Trip = require ('../model/trips.js');
 
  const getTrips = async (req, res) => {
     console.log('ok');

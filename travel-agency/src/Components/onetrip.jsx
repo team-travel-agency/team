@@ -1,9 +1,19 @@
 // src/components/OneTrip.js
 import React, { useEffect, useState } from "react";
+
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios from "axios";  
+
+
+const OneTrip = ({addToPannier}) => { 
+ 
+
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 const OneTrip = ({ setSelectedTrip }) => {
+
   const { id } = useParams();
   const [trip, setTrip] = useState(null);
 
@@ -35,6 +45,22 @@ const OneTrip = ({ setSelectedTrip }) => {
   };
 
   return (
+
+    <div>
+
+      <h1>Trip Details</h1>
+      <p>Country: {trip.country}</p>
+      <img src={trip.img} alt="Trip" />
+      <p>destination: {trip.destination}</p>
+      <p>Price: ${trip.price}</p>
+      <p>Date: {trip.trip_date}</p>
+      <p>Description: {trip.description}</p>
+      
+      <Link to="/Pannier">
+      <button onClick={() => addToPannier(trip)}>Reserve</button>
+      </Link>
+    
+
     <div className="flex flex-col items-center p-4 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold mb-4">Trip Details</h1>
       <p className="text-xl mb-2">Country: {trip.country}</p>
@@ -50,6 +76,7 @@ const OneTrip = ({ setSelectedTrip }) => {
           Reserve
         </button>
       </Link>
+
     </div>
   );
 };
