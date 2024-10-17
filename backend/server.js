@@ -6,7 +6,8 @@ const loginRouter =require("./routes/loginrouter.js")
 const signupRouter =require("./routes/signuprouter.js")
 const tripRouter =require("./routes/triprouter.js")
 const getTripByIdRouter=require("./routes/onetriprouter.js")
-
+const getUserRouter=require("./routes/userroutes.js")
+const getCountryRouter = require("./routes/countryroute.js");
 
 
 
@@ -15,7 +16,7 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 app.use(express.urlencoded({ extended: true }));
-
+  
 app.use(express.static('public'))
 mongoose.connect('mongodb://localhost:27017/travel-agency')
   .then(() => {
@@ -29,8 +30,8 @@ mongoose.connect('mongodb://localhost:27017/travel-agency')
   app.use('/api', signupRouter)
   app.use('/api', loginRouter)
 
-  app.use('/api', router2)
-
+  app.use('/api',getUserRouter)
+  app.use('/api', getCountryRouter)
   app.use('/api', tripRouter)
   app.use('/api',getTripByIdRouter)
 

@@ -1,4 +1,4 @@
-const express =require('express') ;
+const express = require ('express') ;
 const  getTrips = require ('../controllers/trips.js');
 
 const tripRouter = express.Router();

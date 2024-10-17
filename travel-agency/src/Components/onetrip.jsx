@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
-const OneTrip = ({ setSelectedTrip }) => {
+const OneTrip = ({ addToPannier, setSelectedTrip }) => {
   const { id } = useParams();
   const [trip, setTrip] = useState(null);
 
@@ -36,6 +36,20 @@ const OneTrip = ({ setSelectedTrip }) => {
 
   return (
     <div className="flex flex-col items-center p-4 bg-gray-100 min-h-screen">
+          <nav className="w-full bg-white shadow-md">
+        <ul className="flex justify-around p-4">
+          <li>
+            <Link to="/trips" className="text-blue-500 hover:text-blue-700 transition duration-300">Home</Link>
+          </li>
+          <li>
+            <Link to="/Pannier" className="text-blue-500 hover:text-blue-700 transition duration-300">Pannier</Link>
+          </li>
+          <li>
+            <Link to="/User" className="text-blue-500 hover:text-blue-700 transition duration-300">User</Link>
+          </li>
+        
+        </ul>
+      </nav>
       <h1 className="text-3xl font-bold mb-4">Trip Details</h1>
       <p className="text-xl mb-2">Country: {trip.country}</p>
       <img src={trip.img} alt="Trip" className="w-full max-w-md rounded-lg mb-4" />
@@ -44,7 +58,7 @@ const OneTrip = ({ setSelectedTrip }) => {
       <p className="text-base mb-4">Description: {trip.description}</p>
       <Link to="/Pannier">
         <button
-          onClick={handleReserve}
+          onClick={() => addToPannier(trip)}
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
         >
           Reserve
