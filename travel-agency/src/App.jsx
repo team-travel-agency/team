@@ -1,64 +1,57 @@
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
-
-
-import { useState } from 'react';
-
-import './App.css';
-import Trips from './Components/trips.jsx';
-import OneTrip from './Components/onetrip.jsx';
-import Pannier from './Components/pannier.jsx';
-
-import NavBar from './NavBar.jsx'; //
-import { useState } from 'react';
+// src/App.js
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { useState } from "react";
+import "./App.css";
+import Trips from "./Components/Trips";
+import OneTrip from "./Components/OneTrip";
+import Pannier from "./Components/Pannier";
+import Login from "./Components/login";
+import Signup from "./Components/signUp";
+import Search from "./Components/searchByCountry";
+import User from"./Components/userProfile"
 
 function App() {
   const [reservedTrips, setReservedTrips] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTrip, setSelectedTrip] = useState(null);
 
   const addToPannier = (trip) => {
     setReservedTrips([...reservedTrips, trip]);
   };
 
   const removeFromPannier = (id) => {
-    setReservedTrips((prevTrips) => prevTrips.filter((trip) => trip._id !== id));
-  };
-
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
+    setReservedTrips((prevTrips) =>
+      prevTrips.filter((trip) => trip._id !== id)
+    );
   };
 
   return (
     <div>
       <BrowserRouter>
-  
-        <NavBar />
-
         <Routes>
+          <Route path="" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/trips" element={<Trips />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/User" element={<User />} />
           <Route
-            path=''
+            path="/trip/:id"
             element={
-              <>
-                <Trips searchTerm={searchTerm} />
-              </>
+              <OneTrip
+                addToPannier={addToPannier}
+                setSelectedTrip={setSelectedTrip}
+              />
             }
           />
-          <Route path='/trip/:id' element={<OneTrip addToPannier={addToPannier} />} />
-          <Route path='/Pannier' element={<Pannier reservedTrips={reservedTrips} removeFromPannier={removeFromPannier} />} />
-
-
-function App() {
-  const [selectedTrip, setSelectedTrip] = useState(null);
-
-  return (
-   
-    <div>
-      
-      <BrowserRouter>
-        <Routes>
-          <Route path='' element={<Trips />} />
-          <Route path="/trip/:id" element={<OneTrip setSelectedTrip={setSelectedTrip} />} />
-          <Route path="/Pannier" element={<Pannier selectedTrip={selectedTrip} />} />
-
+          <Route
+            path="/Pannier"
+            element={
+              <Pannier
+                reservedTrips={reservedTrips}
+                removeFromPannier={removeFromPannier}
+                selectedTrip={selectedTrip}
+              />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

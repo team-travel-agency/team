@@ -15,4 +15,4 @@ const login = async (req, res) => {
       res.status(500).send('Error logging in: ' + error.message);
     }
   };
-  module.exports={login}
+  module.exports=login

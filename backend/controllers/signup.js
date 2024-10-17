@@ -13,4 +13,4 @@ const Signup = async (req, res) => {
       res.status(400).send('Error creating user: ' + error.message);
     }
   }
-  module.exports={Signup}
+  module.exports=Signup
