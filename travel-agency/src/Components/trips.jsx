@@ -27,7 +27,7 @@ const Trips = () => {
             <Link to="/trips" className="text-blue-500 hover:text-blue-700 transition duration-300">Home</Link>
           </li>
           <li>
-            <Link to="/Pannier" className="text-blue-500 hover:text-blue-700 transition duration-300">Pannier</Link>
+            <Link to="/Pannier" className="text-blue-500 hover:text-blue-700 transition duration-300">reservation</Link>
           </li>
           <li>
             <Link to="/search" className="text-blue-500 hover:text-blue-700 transition duration-300">Search</Link>
@@ -35,6 +35,9 @@ const Trips = () => {
           <li>
             <Link to="/User" className="text-blue-500 hover:text-blue-700 transition duration-300">User</Link>
           </li>
+          <li>
+              <Link to="/login" className="text-blue-500 hover:text-blue-700 transition duration-300">logout</Link>
+            </li>
         </ul>
       </nav>
       <div className="p-4 flex flex-wrap gap-4 justify-center">
@@ -50,7 +53,7 @@ const Trips = () => {
                 className="h-48 w-full object-cover object-center rounded-md mb-2"
               />
               <p className="text-base font-semibold text-gray-900 mb-1">
-                Price: ${trip.price}
+                Price: dt {trip.price}
               </p>
               <p className="text-sm text-gray-700">Date: {trip.trip_date}</p>
             </div>
