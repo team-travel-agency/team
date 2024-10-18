@@ -14,6 +14,8 @@ const Search = () => {
   const handleSearch = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/getcountry?country=${searchInput}`);
+      console.log(response.data);
+      
       setTrips(response.data);
     } catch (error) {
       console.log("Error fetching trips:", error);
@@ -21,8 +23,8 @@ const Search = () => {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-200">
-      <nav className="w-full bg-white shadow-md">
+    <div class="fixed inset-0 flex items-center justify-center">
+      <nav className="w-full bg-white shadow-md fixed top-0 z-10">
         <ul className="flex justify-around p-4">
           <li>
             <input
@@ -36,6 +38,26 @@ const Search = () => {
           </li>
         </ul>
       </nav>
+      {trips.map((trip)=>{
+          return <div className="p-4 flex flex-wrap gap-4 justify-center">
+           <p className="text-2xl font-bold text-gray-900 mb-2">
+             Country: {trip.country}
+           </p>
+           <img
+             src={trip.img}
+             alt="image"
+             className="h-48 w-full object-cover object-center rounded-md mb-2"
+           />
+           <p className="text-base font-semibold text-gray-900 mb-1">
+             Price: dt {trip.price}
+           </p>
+           <p className="text-sm text-gray-700">Date: {trip.trip_date}</p>
+           <p className="text-lg leading-relaxed text-gray-700 mb-8 max-w-lg">
+              {trip.description}
+            </p>
+         </div>
+
+      })}
       
     </div>
   );

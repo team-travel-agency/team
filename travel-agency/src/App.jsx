@@ -2,8 +2,8 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { useState } from "react";
 import "./App.css";
-import Trips from "./Components/Trips";
-import OneTrip from "./Components/OneTrip";
+import Trips from "./Components/trips";
+import OneTrip from "./Components/onetrip";
 import Pannier from "./Components/Pannier";
 import Login from "./Components/login";
 import Signup from "./Components/signUp";
@@ -28,7 +28,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/trips" element={<Trips />} />
           <Route path="/search" element={<Search />} />
